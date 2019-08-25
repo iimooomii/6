@@ -19,10 +19,11 @@ gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc\n" >> /etc/yum.repos.d/
 # Install mongodb
 RUN yum update -y && yum install -y mongodb-org
 
-COPY server.js /home/server.js
-COPY start.sh  /home/start.sh
-COPY package.json  /home/package.json
-COPY matches.json  /home/matches.json
+COPY server.js https://github.com/iimooomii/6/httpserver/
+server.js
+COPY start.sh  https://github.com/iimooomii/6/start.sh
+COPY package.json  https://github.com/iimooomii/6/package.json
+COPY matches.json  https://github.com/iimooomii/6/matches.json
 
 # Install js dependencies
 RUN cd /home
