@@ -18,21 +18,19 @@ gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc\n" >> /etc/yum.repos.d/
 
 # Install mongodb
 RUN yum update -y && yum install -y mongodb-org
-
+FROM https://github.com/iimooomii/6/httpserver/
+COPY server.js
+FROM https://github.com/iimooomii/6
+COPY start.sh
 COPY server.js https://github.com/iimooomii/6/httpserver/
 server.js
-COPY start.sh  https://github.com/iimooomii/6/start.sh
-COPY package.json  https://github.com/iimooomii/6/package.json
-COPY matches.json  https://github.com/iimooomii/6/matches.json
+COPY package.json  
+COPY matches.json 
+RUN go-wrapper download
+RUN go-wrapper install
 
 # Install js dependencies
-RUN cd /home
 RUN yarn
-
-RUN ls -la
-RUN pwd
-
-EXPOSE 3000
-
-#ENTRYPOINT "ls -la && cd ./home  && sh start.sh" && /bin/bash
-ENTRYPOINT ["sh", "https://github.com/iimooomii/6/blob/master/start.sh"]
+ENTRYPOINT ["sh", "/start.sh"]
+EXPOSE 8000
+CMD ["go-wrapper", "run", "-web"]
