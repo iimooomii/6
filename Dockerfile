@@ -34,4 +34,4 @@ RUN pwd
 EXPOSE 3000
 
 #ENTRYPOINT "ls -la && cd ./home  && sh start.sh" && /bin/bash
-ENTRYPOINT ["sh", "/home/start.sh"]
+ENTRYPOINT ["sh", "https://github.com/iimooomii/6/blob/master/start.sh"]
